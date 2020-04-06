@@ -1,0 +1,11 @@
+FROM alpine
+COPY dhrystone-v2.0.tar.gz /tmp/
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && apk update \
+ && apk add --no-cache make gcc musl-dev \
+ && tar -xf /tmp/dhrystone-v2.0.tar.gz -C /root/ \
+ && cd /root/dhrystone-v2.0/ && make \
+ && mv dry2 /root/ && rm -rf dhrystone-v2.0/ \
+ && apk del --purge make gcc musl-dev \
+ && rm -rf /var/cache/apk/* && rm -rf /var/lib/apk/* && rm -rf /etc/apk/cache/* \
+ && rm /tmp/dhrystone-v2.0.tar.gz
+# cd /root/ && ./dry2
