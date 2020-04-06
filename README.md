@@ -1,2 +1,4 @@
 # dhrystone-docker
 用于dhrystone测试的Dockerfile文件
+
+注意：实际测试发现alpine镜像可能会造成性能损失，使用和主机一致的ubuntu镜像则没有问题
